@@ -1,0 +1,20 @@
+{
+  "identifier": "org.zowe.myreactplugin",
+  "apiVersion": "1.0.0",
+  "pluginVersion": "1.0.0",
+  "pluginType": "application",
+  "webContent": {
+    "framework": "react",
+    "launchDefinition": {
+      "pluginShortNameKey": "helloReactTitle",
+      "pluginShortNameDefault": "Hello React"
+    },
+    "descriptionKey": "MyReactPluginDescription",
+    "descriptionDefault": "Base ZLUX React plugin template",
+    "isSingleWindowApp": true,
+    "defaultWindowStyle": {
+      "width": 400,
+      "height": 300
+    }
+  }
+}

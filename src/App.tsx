@@ -1,95 +1,176 @@
 import * as React from 'react';
 import './App.css';
-import { MVDResources } from './mvd-resources';
+import { MemoryRouter, Route } from 'react-router';
+import SamplePage from './SamplePage';
 
 class App extends React.Component<any, any> {
   constructor(props){
     super(props);   
-    this.state = {
-          selectedValue: 'Radish',
-          inputText: "Input Text Here",
-          radioOption: "option1",
-          selectedCheckBoxes: new Set(),
-          textArea: "Input larger text here!"
-        };
-  };
-  
-  handleDropDownChange(e) {
-    this.setState({selectedValue: e.target.value});
+      this.state = {
+        actionType: "Launch",
+        appTarget: "PluginCreate",
+        parameters: 
+        `{"type":"connect",
+        "connectionSettings":{
+        "host":"localhost",
+        "port":23,
+        "deviceType":5,
+        "alternateHeight":24,
+        "alternateWidth":80,
+        "oiaEnabled": true,
+        "security": {
+          "type":0
+        }
+      }}`,
+        appId: "com.rs.mvd.tn3270",
+        status: "Status will appear here.",
+        helloText: "",
+        helloResponse: "",
+        destination: RocketMVD.uriBroker.pluginRESTUri(this.props.resources.pluginDefinition.getBasePlugin(), 'hello',"")
+    };
   };
 
-  handleInputTextChange(e) {
-    this.setState({inputText: e.target.value});
-  };
-
-  handleRadioChange(e) {
-    this.setState({radioOption: e.target.value});
+  handleActionTypeChange(e) {
+    this.setState({actionType: e.target.value});
   }
 
-  handleCheckBoxChange(e) {
-    if (this.state.selectedCheckBoxes.has(e.target.value)) {
-      this.state.selectedCheckBoxes.delete(e.target.value);
-    } else {
-      this.state.selectedCheckBoxes.add(e.target.value);
+  handleAppTargetChange(e) {
+    this.setState({appTarget: e.target.value});
+  }
+
+  handleParameterChange(e) {
+    this.setState({parameters: e.target.value});
+  }
+
+  handleAppIdChange(e) {
+    this.setState({appId: e.target.value});
+  }
+
+  handleHelloTextChange(e) {
+    this.setState({helloText: e.target.value});
+  }
+
+  handleHelloResponseChange(e) {
+    this.setState({helloResponse: e.target.value});
+  }
+
+  sendAppRequest() {
+    var requestText = this.state.parameters;
+    var parameters = null;
+    /*Parameters for Actions could be a number, string, or object. The actual event context of an Action that an App recieves will be an object with attributes filled in via these parameters*/
+    try {
+      if (requestText !== undefined && requestText.trim() !== "") {
+        parameters = JSON.parse(requestText);
+      }
+    } catch (e) {
+      //requestText was not JSON
+    }
+  
+    let appId = this.state.appId;  
+    if (appId) {
+      let message = '';
+      /* JS within an iframe can reference objects of the page it is embedded in via window.parent.
+         With ZLUX, there's a global called RocketMVD which holds useful tools. So, a site
+         Can determine what actions to take by knowing if it is or isnt embedded in ZLUX via IFrame.
+      */
+      let mvdWindow = window;
+      if (mvdWindow && RocketMVD) {
+        console.log((message = 'IFrame is within MVD'));
+        /* PluginManager can be used to find what Plugins (Apps are a type of Plugin) are part of the current ZLUX instance.
+           Once you know that the App you want is present, you can execute Actions on it by using the Dispatcher.
+        */
+        let dispatcher = RocketMVD.dispatcher;
+        let pluginManager = RocketMVD.PluginManager;
+        let plugin = pluginManager.getPlugin(appId);
+        if (plugin) {
+          let type;
+          type = dispatcher.constants.ActionType[this.state.actionType];
+          let mode;
+          mode = dispatcher.constants.ActionTargetMode[this.state.appTarget];
+  
+          if (type != undefined && mode != undefined) {
+            let actionTitle = 'Launch app from sample iframe';
+            let actionID = 'com.rs.sampleiframe.launch';
+            let argumentFormatter = {data: {op:'deref',source:'event',path:['data']}};
+            /*Actions can be made ahead of time, stored and registered at startup, but for example purposes we are making one on-the-fly.
+              Actions are also typically associated with Recognizers, which execute an Action when a certain pattern is seen in the running App.
+            */
+            let action = dispatcher.makeAction(actionID, actionTitle, mode,type,appId,argumentFormatter);
+            let argumentData = {'data':(parameters ? parameters : requestText)};
+            console.log((message = 'App request succeeded'));        
+            this.setState({status: message});
+            /*Just because the Action is invoked does not mean the target App will accept it. We've made an Action on the fly,
+              So the data could be in any shape under the "data" attribute and it is up to the target App to take action or ignore this request*/
+            dispatcher.invokeAction(action,argumentData);
+          } else {
+            console.log((message = 'Invalid target mode or action type specified'));        
+          }
+        } else {
+          console.log((message = 'Could not find App with ID provided'));
+        }
+      }
+      this.setState({status: message});
     }
   }
 
-  handleTextAreaChange(e) {
-    this.setState({textArea: e.target.value});
-  }
-
-  nextPage() {
-    console.log("Load next page!");
+  sayHello() {
+    fetch(this.state.destination, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "_objectType": "com.rs.mvd.sampleapp.request.hello",
+        "_metaDataVersion": "1.0.0",
+        "messageFromClient": this.state.helloText
+      }),
+    })
+    .then(res => {
+      console.log(res);
+      const responseJson: any = res.json();
+      if (responseJson != null && responseJson.serverResponse != null) {
+        this.setState({helloResponse: 
+        `Server replied with 
+        
+        "${responseJson.serverResponse}"`});
+      } else {
+        this.setState({helloResponse:"<Empty Reply from Server>"});
+      }
+      console.log(responseJson);
+    });
   }
 
   public render(): JSX.Element {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">React Sample App</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code>, rebuild, and reload.
-          <br/>
-          <select value={this.state.selectedValue} onChange={this.handleDropDownChange.bind(this)}>
-            <option value="Orange">Orange</option>
-            <option value="Radish">Radish</option>
-            <option value="Cherry">Cherry</option>
-          </select>
-          <br/>
-          <input type="text" value={this.state.inputText} onChange={this.handleInputTextChange.bind(this)}/>
-          <br/>
-          <form action="">
-            <input type="radio" name="radio" value="option1" checked={this.state.radioOption == "option1"} 
-              onChange={this.handleRadioChange.bind(this)}/> Option 1<br/>
-            <input type="radio" name="radio" value="option2" checked={this.state.radioOption == "option2"}
-              onChange={this.handleRadioChange.bind(this)}/> Option 2<br/>
-            <input type="radio" name="radio" value="option3" checked={this.state.radioOption == "option3"}
-              onChange={this.handleRadioChange.bind(this)}/> Option 3<br/>
-          </form>
-          <br/>
-            <input type="checkbox" name="check1" value="check1" 
-              onChange={this.handleCheckBoxChange.bind(this)}/> Check 1<br/>
-            <input type="checkbox" name="check2" value="check2"
-              onChange={this.handleCheckBoxChange.bind(this)}/> Check 2<br/>
-            <input type="checkbox" name="check3" value="check3"
-              onChange={this.handleCheckBoxChange.bind(this)}/> Check 3<br/>
-          <br/>
-          <textarea rows={4} cols={50} value={this.state.textArea} onChange={this.handleTextAreaChange.bind(this)}>
-          </textarea>
-          <br/>
-          <button onClick={this.nextPage}>Next Page</button>
-          <br/>
-          <MVDResources.Consumer>
-            {resources => (
-              <>
-                <button onClick={resources.windowActions.maximize}>Maximize</button>
-                <button onClick={resources.windowActions.restore}>Restore</button>
-              </>
-            )}
-          </MVDResources.Consumer>
-        </p>
+      <MemoryRouter
+      initialEntries={[
+        '/one'
+      ]}>
+      <div>
+        <Route path="/one" 
+               render={(props) => 
+              <SamplePage {...props} 
+              textArea={this.state.textArea}
+              inputText={this.state.inputText}
+              actionType={this.state.actionType}
+              appTarget={this.state.appTarget}
+              parameters={this.state.parameters}
+              appId={this.state.appId}
+              status={this.state.status}
+              helloText={this.state.helloText}
+              helloResponse={this.state.helloResponse}
+              sayHello={this.sayHello.bind(this)}
+              handleHelloTextChange={this.handleHelloTextChange.bind(this)}
+              handelHelloResponseChange={this.handleHelloResponseChange.bind(this)}
+              sendAppRequest={this.sendAppRequest.bind(this)}
+              handleAppIdChange={this.handleAppIdChange.bind(this)}
+              handleParameterChange={this.handleParameterChange.bind(this)}
+              handleAppTargetChange={this.handleAppTargetChange.bind(this)}
+              handleActionTypeChange={this.handleActionTypeChange.bind(this)}
+              />} />
       </div>
+    </MemoryRouter>
     );
   }
 }

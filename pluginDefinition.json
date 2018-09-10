@@ -7,7 +7,8 @@
     "framework": "react",
     "launchDefinition": {
       "pluginShortNameKey": "helloReactTitle",
-      "pluginShortNameDefault": "Hello React"
+      "pluginShortNameDefault": "Hello React",
+      "imageSrc": "icon.png"
     },
     "descriptionKey": "MyReactPluginDescription",
     "descriptionDefault": "Base ZLUX React plugin template",

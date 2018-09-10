@@ -6,7 +6,7 @@ class App extends React.Component<any, any> {
   constructor(props){
     super(props);   
     this.state = {
-          selectedValue: 'Radish',
+          selectedValue: 'First',
           inputText: "Input Text Here",
           radioOption: "option1",
           selectedCheckBoxes: new Set(),
@@ -38,9 +38,6 @@ class App extends React.Component<any, any> {
     this.setState({textArea: e.target.value});
   }
 
-  nextPage() {
-    console.log("Load next page!");
-  }
 
   public render(): JSX.Element {
     return (
@@ -52,9 +49,9 @@ class App extends React.Component<any, any> {
           To get started, edit <code>src/App.tsx</code>, rebuild, and reload.
           <br/>
           <select value={this.state.selectedValue} onChange={this.handleDropDownChange.bind(this)}>
-            <option value="Orange">Orange</option>
-            <option value="Radish">Radish</option>
-            <option value="Cherry">Cherry</option>
+            <option value="First">First</option>
+            <option value="Second">Second</option>
+            <option value="Third">Third</option>
           </select>
           <br/>
           <input type="text" value={this.state.inputText} onChange={this.handleInputTextChange.bind(this)}/>
@@ -77,8 +74,6 @@ class App extends React.Component<any, any> {
           <br/>
           <textarea rows={4} cols={50} value={this.state.textArea} onChange={this.handleTextAreaChange.bind(this)}>
           </textarea>
-          <br/>
-          <button onClick={this.nextPage}>Next Page</button>
           <br/>
           <MVDResources.Consumer>
             {resources => (

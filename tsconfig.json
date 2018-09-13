@@ -1,3 +1,6 @@
 {
-  "extends": "../zlux-app-manager/virtual-desktop/plugin-config/tsconfig.react.base.json"
+  "extends": "../zlux-app-manager/virtual-desktop/plugin-config/tsconfig.react.base.json",
+  "compilerOptions": {
+    "skipLibCheck": true
+  }
 }

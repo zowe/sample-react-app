@@ -1,3 +1,13 @@
+/*
+  This program and the accompanying materials are
+  made available under the terms of the Eclipse Public License v2.0 which accompanies
+  this distribution, and is available at https://www.eclipse.org/legal/epl-v20.html
+  
+  SPDX-License-Identifier: EPL-2.0
+  
+  Copyright Contributors to the Zowe Project.
+*/
+
 import * as React from 'react';
 import './App.css';
 import { MVDResources } from './mvd-resources';
@@ -6,11 +16,8 @@ class SamplePage extends React.Component<any, any> {
   public render(): JSX.Element {
     return (
       <div className="app-component">
-        <h1>
-          Welcome to !
-        </h1>
         <div>
-          <div className="app-component test-panel-container">
+          <div className="app-component iframe-font test-panel-container">
             <div className="test-panel plugin-test-panel">
               <div className="bottom-10">
                 <span className="bigger-bold-text">Plug-in Request Test</span>
@@ -39,10 +46,6 @@ class SamplePage extends React.Component<any, any> {
                   <input type="radio" value="PluginFindAnyOrCreate" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label htmlFor="targetReuse">Reuse Any Open</label>
                 </div>      
-                <span className="bold-text hide-it">Target App Window Title (this will become the title for the target window)</span>
-                <div className="div-input hide-it">
-                  <input className="iframe-input input-height input-corner input-text shadowed" type="text" name="appWindowTitle" id="appWindowTitle" placeholder="app window title" value="My New Title"/>
-                </div>
                 <span className="div-input bold-text">Parameters:</span>
                 <div className="div-textarea-input">
                   {/* The text here is merely an example which provides some connection details for the terminal app. It could be anything so long as the receiving App supports it.

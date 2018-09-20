@@ -9,58 +9,68 @@
 */
 
 import * as React from 'react';
-import './App.css';
+import 'script-loader!./App-css.js';
+declare var styles: any;
+
 import { MVDResources } from './mvd-resources';
+
+function mergeStyles(...args: any[]) {
+  let obj = {};
+  for (let i = 0; i < args.length; i++) {
+    Object.assign(obj, args[i]);
+  }
+  return obj;
+}
 
 class SamplePage extends React.Component<any, any> {
   public render(): JSX.Element {
     return (
-      <div className="app-component">
+      <div style={styles.appComponent}>
         <div>
-          <div className="app-component iframe-font test-panel-container">
-            <div className="test-panel plugin-test-panel">
-              <div className="bottom-10">
-                <span className="bigger-bold-text">Plug-in Request Test</span>
+          <div style={mergeStyles(styles.appComponent, styles.iframeFont, styles.testPanelContainer)}>
+            <div style={mergeStyles(styles.testPanel, styles.pluginTestPanel)}>
+              <div style={styles.bottom10}>
+                <span style={styles.biggerBoldText}>Plug-in Request Test</span>
                   {/* Tests the sending of requests to other plugins. Defaults to send a message
                   to itself (and responding) to show more parts of the API */}
-                <button className="iframe-button shadowed" type="button" onClick={this.props.sendAppRequest}>Send App Request</button>
+                <button style={mergeStyles(styles.iframeButton, styles.shadowed)} type="button" onClick={this.props.sendAppRequest}>Send App Request</button>
               </div>
-              <span className="bold-text">Application Identifier: </span>
+              <span style={styles.boldText}>Application Identifier: </span>
               <div>
-                <div className="div-input">
-                  <input className="iframe-input input-height input-corner input-text shadowed" type="text" value={this.props.appId} onChange={this.props.handleAppIdChange}/>
+                <div style={styles.divInput}>
+                  <input style={mergeStyles(styles.iframeInput, styles.inputHeight, styles.inputCorner, styles.inputText, styles.shadowed)} type="text" value={this.props.appId} onChange={this.props.handleAppIdChange}/>
                 </div>
                 <div>
                   {/* Action types are used to determine what sort of Action is being taken on whatever App instance is the target. Launch simply creates a new instance with the context you provide, but Message can be used to communicate with an already open Instance to drive some action */}        
-                  <label className="bold-text">Action Type: </label>
-                  <input type="radio" value="Launch" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
+                  <label style={styles.boldText}>Action Type: </label>
+                  <input type="radio" value="Launch" name="actionType" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
                   <label htmlFor="actionLaunch">Launch</label>
-                  <input type="radio" value="Message" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
+                  <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
                   <label htmlFor="actionMessage">Message</label>
                 </div>
                 {/* App target modes are used to determine which instance of an App should be communicated with. You can create a new instance to send the Action to, or you could reuse an existing instance that is open. */}
                 <div>
-                  <label className="bold-text">App Target Mode: </label>
-                  <input type="radio" value="PluginCreate" checked={this.props.appTarget == "PluginCreate"} onChange={this.props.handleAppTargetChange}/>
+                  <label style={styles.boldText}>App Target Mode: </label>
+                  <input type="radio" value="PluginCreate" name="targetMode" checked={this.props.appTarget == "PluginCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label htmlFor="targetCreate">Create New</label>
-                  <input type="radio" value="PluginFindAnyOrCreate" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
+                  <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label htmlFor="targetReuse">Reuse Any Open</label>
                 </div>      
-                <span className="div-input bold-text">Parameters:</span>
-                <div className="div-textarea-input">
+                <span style={mergeStyles(styles.divInput, styles.boldText)}>Parameters:</span>
+                <div style={styles.divTextareaInput}>
                   {/* The text here is merely an example which provides some connection details for the terminal app. It could be anything so long as the receiving App supports it.
                   In this example App, the contents here will be put inside of a JSON with the contents as the "data" attribute. */}
-                  <textarea className="iframe-input input-corner input-text shadowed" rows={10} cols={50} value={this.props.parameters} onChange={this.props.handleParameterChange}></textarea>
+                  <textarea style={mergeStyles(styles.iframeInput, styles.inputCorner, styles.inputText, styles.shadowed)} rows={10} cols={50} value={this.props.parameters} onChange={this.props.handleParameterChange}></textarea>
                 </div>
-                <div className="hundred-width">
+                <div style={styles.hundredWidth}>
                   <span>App Status or Message:</span>
-                  <p className="display-text shadowed disable-effect" id="status">{this.props.status}</p>
+                  <p style={mergeStyles(styles.displayText, styles.shadowed, styles.disableEffect)} id="status">{this.props.status}</p>
                 </div>
               </div>
             </div>
-            <div className="test-panel dataservice-test-panel">
-              <div className="bottom-10">
-                <span className="bigger-bold-text">Dataservice Request Test</span>
+            <div style={mergeStyles(styles.testPanel, styles.dataserviceTestPanel)}>
+              <div style={styles.bottom10}>
+                <span style={styles.biggerBoldText}>Dataservice Request Test</span>
               </div>
               <div>
                 <input placeholder="Message" value={this.props.helloText} onChange={this.props.handleHelloTextChange}/>      
@@ -68,7 +78,7 @@ class SamplePage extends React.Component<any, any> {
               </div>
               <div>
                 <label>Response</label>
-                <textarea className="server-response" placeholder="Response" value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
+                <textarea style={styles.serverResponse} placeholder="Response" value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
               </div>
             </div>
           </div>

@@ -135,6 +135,80 @@ class App extends React.Component<any, any> {
     this.setState({helloResponse: e.target.value});
   }
 
+  getDefaultsFromServer() {
+    let plugin = this.props.resources.pluginDefinition.getBasePlugin();
+    let appRequestUri = ZoweZLUX.uriBroker.pluginConfigUri(plugin, 'requests/app', undefined);
+    fetch (appRequestUri, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(res=> {
+      if (res.status != 200) {
+        this.log.warn(`Get defaults from server failed. Data missing or request invalid. Status=${res.status}`);
+      }
+      res.json().then((responseJson)=> {
+        this.log.info(`JSON=${JSON.stringify(responseJson)}`);
+        if (res.status == 200) {
+          if (responseJson.contents.appid && responseJson.contents.parameters) {
+            let paramData = responseJson.contents.parameters.data;
+            this.setState({
+              parameters: paramData.parameters,
+              appTarget: paramData.appTarget,
+              actionType: paramData.actionType,
+              appId: responseJson.contents.appid.data.appId
+            });
+          } else {
+            this.log.warn(`Incomplete data. AppID or Parameters missing.`);
+          }
+        }
+      }).catch(e => {
+        this.log.warn(`Response was not JSON`);
+      });
+    }).catch(e => {
+      this.log.warn(`Error on getting defaults, e=${e}`);
+      this.setState({status: 'Error getting defaults'});
+    });
+  }
+
+  saveToServer() {
+    let plugin = this.props.resources.pluginDefinition.getBasePlugin();
+    let parameterUri = ZoweZLUX.uriBroker.pluginConfigUri(plugin, 'requests/app', 'parameters');
+    let appIdUri = ZoweZLUX.uriBroker.pluginConfigUri(plugin, 'requests/app', 'appid');
+    fetch(parameterUri, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({parameters: this.state.parameters,
+                            appTarget: this.state.appTarget,
+                            actionType: this.state.actionType})
+    }).then(res => {
+      this.log.info(`Saved parameters with HTTP status=${res.status}`);
+      if (res.status == 200 || res.status == 201) {
+        fetch (appIdUri, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({appId: this.state.appId})
+        }).then(res => {
+          this.log.info(`Saved App ID with HTTP status=${res.status}`);
+        }).catch(e => {
+          this.log.warn(`Error on saving App ID, e=${e}`);
+          this.setState({status: 'Error saving App ID'});
+        });
+      } else {
+        this.log.warn(`Error on saving parameters, response status=${res.status}`);
+      }
+    }).catch(e => {
+      this.log.warn(`Error on saving parameters, e=${e}`);
+      this.setState({status: 'Error saving parameters'});
+    });
+  }
+
   sayHello() {
     fetch(this.state.destination, {
       method: 'POST',
@@ -247,6 +321,8 @@ class App extends React.Component<any, any> {
               handleHelloTextChange={this.handleHelloTextChange.bind(this)}
               handelHelloResponseChange={this.handleHelloResponseChange.bind(this)}
               sendAppRequest={this.sendAppRequest.bind(this)}
+              saveToServer={this.saveToServer.bind(this)}
+              getDefaultsFromServer={this.getDefaultsFromServer.bind(this)}
               handleAppIdChange={this.handleAppIdChange.bind(this)}
               handleParameterChange={this.handleParameterChange.bind(this)}
               handleAppTargetChange={this.handleAppTargetChange.bind(this)}

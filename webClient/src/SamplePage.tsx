@@ -34,6 +34,8 @@ class SamplePage extends React.Component<any, any> {
                   {/* Tests the sending of requests to other plugins. Defaults to send a message
                   to itself (and responding) to show more parts of the API */}
                 <button style={mergeStyles(styles.iframeButton, styles.shadowed)} type="button" onClick={this.props.sendAppRequest}>Send App Request</button>
+                <button style={mergeStyles(styles.iframeButton, styles.shadowed)} type="button" onClick={this.props.getDefaultsFromServer}>Get Defaults From Server</button>
+                <button style={mergeStyles(styles.iframeButton, styles.shadowed)} type="button" onClick={this.props.saveToServer}>Save to Server</button>        
               </div>
               <span style={styles.boldText}>Application Identifier: </span>
               <div>

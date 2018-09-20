@@ -17,34 +17,48 @@ class App extends React.Component<any, any> {
   constructor(props){
     super(props);
     this.log = this.props.resources.logger;
-    this.state = {
+    let metadata = this.props.resources.launchMetadata;
+    if (metadata != null && metadata.data != null && metadata.data.type != null) {
+      this.handleLaunchOrMessageObject(metadata.data);
+    } else {
+      this.state = this.getDefaultState();
+    }
+
+  };
+
+  private getDefaultState() {
+    return {
       actionType: "Launch",
       appTarget: "PluginCreate",
       parameters: 
-`{"type":"connect",
-  "connectionSettings":{
-    "host":"localhost",
-    "port":23,
-    "deviceType":5,
-    "alternateHeight":60,
-    "alternateWidth":132,
-    "oiaEnabled": true,
-    "security": {
-      "type":0
-    }
-}}`,
+      `{"type":"connect",
+        "connectionSettings":{
+          "host":"localhost",
+          "port":23,
+          "deviceType":5,
+          "alternateHeight":60,
+          "alternateWidth":132,
+          "oiaEnabled": true,
+          "security": {
+            "type":0
+          }
+        }}`,
       appId: "com.rs.mvd.tn3270",
       status: "Status will appear here.",
       helloText: "",
       helloResponse: "",
       destination: ZoweZLUX.uriBroker.pluginRESTUri(this.props.resources.pluginDefinition.getBasePlugin(), 'hello',"")
     };
-    let metadata = this.props.resources.launchMetadata;
-    if (metadata != null && metadata.data != null && metadata.data.type != null) {
-      this.handleLaunchOrMessageObject(metadata.data);
-    }
+  }
 
-  };
+  updateOrInitState(stateUpdate: any): void {
+    if (!this.state) {
+      this.state = Object.assign(this.getDefaultState(), stateUpdate);
+    }
+    else {
+      this.setState(stateUpdate);
+    }
+  }
 
   handleLaunchOrMessageObject(data: any) {
     switch (data.type) {
@@ -54,19 +68,19 @@ class App extends React.Component<any, any> {
       if (actionType == 'Launch' || actionType == 'Message') {
         let mode = data.targetMode;
         if (mode == 'PluginCreate' || mode == 'PluginFindAnyOrCreate') {
-          this.setState({actionType: actionType,
-                         appTarget: mode,
-                         appId: data.targetAppId,
-                         parameters: data.requestText});
+          this.updateOrInitState({actionType: actionType,
+                                  appTarget: mode,
+                                  appId: data.targetAppId,
+                                  parameters: data.requestText});
         } else {
           msg = `Invalid target mode given (${mode})`;
           this.log.warn(msg);
-          this.setState({status: msg});
+          this.updateOrInitState({status: msg});
         }
       } else {
         msg = `Invalid action type given (${actionType})`;
         this.log.warn(msg);
-        this.setState({status: msg});
+        this.updateOrInitState({status: msg});
       }
       break;
     default:

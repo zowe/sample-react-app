@@ -58,8 +58,7 @@ var styles = {
 
   iframeButton :{
     borderRadius: "4px",
-    float: "right",
-    marginRight: "30%",
+    margin: "0px 4px 0px 4px",
     fontWeight: "700"
   },
 

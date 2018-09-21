@@ -27,17 +27,5 @@
       "localName": "hello",
       "sourcePlugin": "org.zowe.zlux.sample.iframe"
     }
-  ],
-  "configurationData": {
-    "resources": {
-      "requests": {
-        "aggregationPolicy": "override",
-        "subResources": {
-          "app": {
-            "aggregationPolicy": "override"
-          }
-        }
-      }
-    }
-  }
+  ]
 }

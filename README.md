@@ -23,7 +23,7 @@ So, let's get started!
 1. [Setting Up for Rapid Development](#setting-up-for-rapid-development)
 1. [Messaging Other Apps](#messaging-other-apps)
 1. [Launching into Context](#launching-into-context)
-1. [And More...](#and-more...)
+1. [And More...](#and-more)
 
 ## Purpose of App to App Communication
 When working with a computer, users tend to use multiple applications to accomplish some task, for example: checking a dashboard before digging into a detailed program or checking email before opening a bank statement in a browser. In many environments, the relationship between one program and another is loose and not well defined (you might open one program to learn of a situation which you solve by opening another and typing or pasting in content). Or perhaps a hyperlink is provided or attachment which opens up a program by using a lookup table of which program is the default for handling a certain file extension. 

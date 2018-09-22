@@ -41,7 +41,7 @@ Before we get to implementing new features into this App, you should set up your
 When building web content for ZLUX, Apps are packaged via Webpack, which can automatically scan for file changes on code to quickly repackage only what has changed.
 To do this, you would simply run `npm run start`, but you may need to do a few tasks prior:
 
-1. Open up a command prompt to `sample-angular-app/webClient`
+1. Open up a command prompt to `sample-react-app/webClient`
 1. Set the environment variable MVD_DESKTOP_DIR to the location of `zlux-app-manager/virtual-desktop`. Such as `set MVD_DESKTOP_DIR=../../zlux-app-manager/virtual-desktop`. This is needed whenever building individual App web code due to the core configuration files being located in **virtual-desktop**
 1. Execute `npm install`. This installs all the dependencies in the **package.json** within the directory.
 1. Execute `npm run start`
@@ -51,7 +51,7 @@ To do this, you would simply run `npm run start`, but you may need to do a few t
 OK, now we can get to the code. Your App should currently have some elements on the left side of its window for messaging Apps, added from the previous tutorials, but so far the logic for it has been stubbed out.
 Let's add that logic in just two places.
 
-Open up **sample-angular-app/webClient/src/App.tsx** and change the method **sendAppRequest** to the following:
+Open up **sample-react-app/webClient/src/App.tsx** and change the method **sendAppRequest** to the following:
 
 ```typescript
   sendAppRequest() {

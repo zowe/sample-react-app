@@ -9,7 +9,7 @@ Copyright Contributors to the Zowe Project.
 # Sample React App
 
 This branch acts as a tutorial, intended as a workshop session, which will teach you how to make use of the ZLUX configuration dataservice within an App.
-The code here is the completed version, and serves as a reference. To complete this tutorial, you should either build off of a sandbox you have been using to complete the prior tutorials in sequential order, or, you can just [clone the previous tutorial branch here](https://github.com/zowe/react-sample-app/tree/lab/step-3-app2app-complete) and work from that.
+The code here is the completed version, and serves as a reference. To complete this tutorial, you should either build off of a sandbox you have been using to complete the prior tutorials in sequential order, or, you can just [clone the previous tutorial branch here](https://github.com/zowe/react-sample-app/tree/lab/step-2-app2app-complete) and work from that.
 
 By the end of this tutorial you will:
 1. Know how to load user preferences and default settings.

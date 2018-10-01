@@ -1,20 +1,43 @@
 {
-  "identifier": "org.zowe.myreactplugin",
+  "identifier": "org.zowe.zlux.sample.react",
   "apiVersion": "1.0.0",
   "pluginVersion": "1.0.0",
   "pluginType": "application",
   "webContent": {
     "framework": "react",
     "launchDefinition": {
-      "pluginShortNameKey": "helloReactTitle",
-      "pluginShortNameDefault": "Hello React"
+      "pluginShortNameKey": "samplereact",
+      "pluginShortNameDefault": "React Sample",
+      "imageSrc": "assets/icon.png"
     },
-    "descriptionKey": "MyReactPluginDescription",
-    "descriptionDefault": "Base ZLUX React plugin template",
+    "descriptionKey": "SampleReactPluginDescription",
+    "descriptionDefault": "Sample App Showcasing React Adapter",
     "isSingleWindowApp": true,
     "defaultWindowStyle": {
-      "width": 400,
-      "height": 300
+      "width": 800,
+      "height": 450,
+      "x": 200,
+      "y": 50
+    }
+  },
+  "dataServices": [
+    {
+      "type": "import",
+      "sourceName": "hello",
+      "localName": "hello",
+      "sourcePlugin": "org.zowe.zlux.sample.iframe"
+    }
+  ],
+  "configurationData": {
+    "resources": {
+      "requests": {
+        "aggregationPolicy": "override",
+        "subResources": {
+          "app": {
+            "aggregationPolicy": "override"
+          }
+        }
+      }
     }
   }
 }

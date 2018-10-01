@@ -1,4 +1,5 @@
 
+
 /*
   This program and the accompanying materials are
   made available under the terms of the Eclipse Public License v2.0 which accompanies
@@ -11,6 +12,7 @@
 
 var path = require('path');
 var webpackConfig = require('webpack-config');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 if (process.env.MVD_DESKTOP_DIR == null) {
   throw new Error('You must specify MVD_DESKTOP_DIR in your environment');
@@ -21,9 +23,17 @@ var config = {
     path.resolve(__dirname, './src/index.tsx')
   ],
   'output': {
-    'path': path.resolve(__dirname, 'web'),
+    'path': path.resolve(__dirname, '../web'),
     'filename': 'main.js',
-  }
+  },
+  'plugins': [
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, './src/assets'),
+        to: path.resolve('../web/assets')
+      }
+    ])
+  ]
 };
 
 module.exports = new webpackConfig.Config()

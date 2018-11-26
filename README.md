@@ -133,7 +133,7 @@ Then, we'll edit the constructor of App, and add a new method, **getDefaultState
             "type":0
           }
         }}`,
-      appId: "com.rs.mvd.tn3270",
+      appId: "org.zowe.terminal.tn3270",
       status: "Status will appear here.",
       helloText: "",
       helloResponse: "",

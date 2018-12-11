@@ -25,7 +25,8 @@
       "type": "import",
       "sourceName": "hello",
       "localName": "hello",
-      "sourcePlugin": "org.zowe.zlux.sample.iframe"
+      "sourcePlugin": "org.zowe.zlux.sample.angular",
+      "versionRange": "^1.0.0"
     }
   ],
   "configurationData": {

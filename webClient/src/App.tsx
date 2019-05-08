@@ -307,7 +307,7 @@ class App extends React.Component<any, any> {
         <div>
         <Route path="/one" 
       render={(props) => 
-              <SamplePage {...props} 
+              <SamplePage {...props}
               textArea={this.state.textArea}
               inputText={this.state.inputText}
               actionType={this.state.actionType}

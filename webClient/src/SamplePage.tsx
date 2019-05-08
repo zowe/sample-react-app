@@ -11,6 +11,7 @@
 import * as React from 'react';
 import 'script-loader!./App-css.js';
 import { withTranslation } from 'react-i18next';
+import { MVDResources } from './mvd-resources';
 
 declare var styles: any;
 
@@ -64,7 +65,7 @@ class SamplePage extends React.Component<any, any> {
                 <div style={styles.divTextareaInput}>
                   {/* The text here is merely an example which provides some connection details for the terminal app. It could be anything so long as the receiving App supports it.
                   In this example App, the contents here will be put inside of a JSON with the contents as the "data" attribute. */}
-                  <textarea style={mergeStyles(styles.iframeInput, styles.inputCorner, styles.inputText, styles.shadowed)} rows={10} cols={50} value={this.props.parameters} onChange={this.props.handleParameterChange}></textarea>
+                  <textarea style={mergeStyles(styles.iframeInput, styles.inputCorner, styles.inputText, styles.shadowed)} rows={10} cols={50} defaultValue={this.props.parameters} onChange={this.props.handleParameterChange}></textarea>
                 </div>
                 <div style={styles.hundredWidth}>
                   <span>{t('app_status_or_message')}</span>
@@ -82,7 +83,7 @@ class SamplePage extends React.Component<any, any> {
               </div>
               <div>
                 <label>{t('response')}</label>
-                <textarea style={styles.serverResponse} placeholder={t('response')} value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
+                <textarea style={styles.serverResponse} placeholder={t('response')} defaultValue={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
               </div>
             </div>
           </div>

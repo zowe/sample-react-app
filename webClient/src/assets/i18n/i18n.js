@@ -30,36 +30,38 @@ const en = {
 		no_or_empty_message_received_from_client: "No Or Empty Message Received from Client",
 		empty_reply_from_server: "Empty Reply from Server",
 		could_not_find_app_with_id_provided: "Could not find app with ID provided",
+		status_will_appear_here: "Status will appear here",
+		request_succeeded: "App request succeeded"
 	}
 }
 
 const ru = {
 	translation: {
 		action_type: "Тип действия",
-		app_request_succeeded: "Запрос программы выполнен успешно",
-		app_request_test: "Тест запроса программы",
-		app_status_or_message: "Cтатус программы или сообщение",
-		app_target_mode: "Целевой режим программы",
-		application_identifier: "Идентификатор программы",
+		app_request_test: "Тест запроса приложения",
+		app_status_or_message: "Статус приложения или сообщение",
+		app_target_mode: "Режим целевого приложения",
+		application_identifier: "Идентификатор приложения",
 		close: "Закрыть",
-		create_new: "Создать новый",
+		create_new: "Создать новое",
 		dataservice_request_test: "Тест сервиса данных",
-		get_from_server: "Получить от сервера",
+		get_from_server: "Получить с сервера",
 		invalid_plugin_identifier: "Неверный идентификатор плагина",
-		launch: "Запустить",
+		launch: "Запуск",
 		message: "Сообщение",
 		parameters: "Параметры",
-		plugin_request_test: "Тест запроса плагинов",
+		plugin_request_test: "Тест запроса плагина",
 		response: "Ответ",
-		reuse_any_open: "Использовать oткрытый",
+		reuse_any_open: "Использовать открытое",
 		run: "Запустить",
-		save_to_server: "Сохранить в сервере",
-		send_app_request: "Отправить запроса программы",
-		server_replied_with: "Сервер ответил с ",
-		status_will_appear_here: "Статус появится здесь",
+		save_to_server: "Сохранить на сервере",
+		send_app_request: "Отправить запрос приложения",
+		server_replied_with: "Сервер ответил ",
 		no_or_empty_message_received_from_client: "Нет ответа от клиента",
-		empty_reply_from_server: "Пустой ответ с сервера",
-		could_not_find_app_with_id_provided: "Не удалось найти программу с указанным идентификатором",
+		empty_reply_from_server: "Пустой ответ от сервера",
+		could_not_find_app_with_id_provided: "Не удалось найти приложение с указанным идентификатором",
+		status_will_appear_here: "Статус появится здесь",
+		request_succeeded: "Запрос приложения выполнен успешно",
 	}
 }
 
@@ -90,6 +92,8 @@ const ja = {
 		no_or_empty_message_received_from_client: "クライアントから受信したメッセージがない、あるいは空です。",
 		empty_reply_from_server: "サーバーからの応答が空です。",
 		could_not_find_app_with_id_provided: "指定されたIDのアプリケーションが見つかりませんでした。",
+		status_will_appear_here: "スタータスをここに表示",
+		request_succeeded: "アプリケーション・リクエストが成功しました"
 	}
 }
 
@@ -120,6 +124,8 @@ const zh = {
 		no_or_empty_message_received_from_client: "从客户端收到空消息",
 		empty_reply_from_server: "服务器没有回复",
 		could_not_find_app_with_id_provided: "无法找到对应ID的应用",
+		status_will_appear_here: "状态显示",
+		request_succeeded: "应用请求成功"
 	}
 }
 
@@ -150,6 +156,8 @@ const fr = {
 		no_or_empty_message_received_from_client: "Pas de réponse du client",
 		empty_reply_from_server: "La réponse du serveur est vide",
 		could_not_find_app_with_id_provided: "L'ID fourni n'appartient pas à une application existante",
+		status_will_appear_here: "Le statu apparait ici",
+		request_succeeded: "Demande à l’application réussie"
 	}
 }
 
@@ -180,6 +188,8 @@ const de = {
 		no_or_empty_message_received_from_client: "Keine/Leere Nachricht vom Client erhalten",
 		empty_reply_from_server: "Leere Antwort von Server erhalten",
 		could_not_find_app_with_id_provided: "Anwendung mit angegebener Kennung wurde nicht gefunden",
+		status_will_appear_here: "Der Status wird hier angezeigt",
+		request_succeeded: "Anfrage erfolgreich abgeschlossen"
 	}
 }
 

@@ -11,9 +11,11 @@
 import * as React from 'react';
 import { MemoryRouter, Route } from 'react-router';
 import SamplePage from './SamplePage';
+import { withTranslation } from 'react-i18next';
 
 class App extends React.Component<any, any> {
   private log: ZLUX.ComponentLogger;
+  t: any;
   constructor(props){
     super(props);
     this.log = this.props.resources.logger;
@@ -44,7 +46,7 @@ class App extends React.Component<any, any> {
           }
         }}`,
       appId: "org.zowe.terminal.tn3270",
-      status: "Status will appear here.",
+      status: 'status_will_appear_here',
       helloText: "",
       helloResponse: "",
       destination: ZoweZLUX.uriBroker.pluginRESTUri(this.props.resources.pluginDefinition.getBasePlugin(), 'hello',"")
@@ -282,7 +284,7 @@ class App extends React.Component<any, any> {
           */
           let action = dispatcher.makeAction(actionID, actionTitle, mode,type,appId,argumentFormatter);
           let argumentData = {'data':(parameters ? parameters : requestText)};
-          this.log.info((message = 'App request succeeded'));        
+          this.log.info((message = this.t('request_succeeded')));
           this.setState({status: message});
           /*Just because the Action is invoked does not mean the target App will accept it. We've made an Action on the fly,
             So the data could be in any shape under the "data" attribute and it is up to the target App to take action or ignore this request*/
@@ -291,7 +293,7 @@ class App extends React.Component<any, any> {
           this.log.warn((message = 'Invalid target mode or action type specified'));        
         }
       } else {
-        this.log.warn((message = 'Could not find App with ID provided'));
+        this.log.warn((message = this.t('could_not_find_app_with_id_provided')));
       }
       this.setState({status: message});
     }
@@ -299,6 +301,8 @@ class App extends React.Component<any, any> {
 
 
   public render(): JSX.Element {
+    const { t } = this.props;
+    this.t = t;
     return (
         <MemoryRouter
       initialEntries={[
@@ -314,7 +318,7 @@ class App extends React.Component<any, any> {
               appTarget={this.state.appTarget}
               parameters={this.state.parameters}
               appId={this.state.appId}
-              status={this.state.status}
+              status={t(this.state.status)}
               helloText={this.state.helloText}
               helloResponse={this.state.helloResponse}
               sayHello={this.sayHello.bind(this)}
@@ -334,4 +338,4 @@ class App extends React.Component<any, any> {
   }
 }
 
-export default App;
+export default withTranslation('translation')(App);

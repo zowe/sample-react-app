@@ -228,12 +228,11 @@ class App extends React.Component<any, any> {
         this.log.info(`Res =${res}`);
         res.json().then((responseJson)=> {
           if (responseJson != null && responseJson.serverResponse != null) {
-            this.setState({helloResponse: 
-                           `Server replied with 
-                             
-                             "${responseJson.serverResponse}"`});
+            this.setState({helloResponse:
+              `${this.t('server_replied_with')}
+                "${responseJson.serverResponse}"`});
           } else {
-            this.setState({helloResponse:"<Empty Reply from Server>"});
+            this.setState({helloResponse: this.t('empty_reply_from_server')});
           }
           this.log.info(`Res JSON=${JSON.stringify(responseJson)}`);
         }).catch((e)=> {
@@ -323,7 +322,7 @@ class App extends React.Component<any, any> {
               helloResponse={this.state.helloResponse}
               sayHello={this.sayHello.bind(this)}
               handleHelloTextChange={this.handleHelloTextChange.bind(this)}
-              handelHelloResponseChange={this.handleHelloResponseChange.bind(this)}
+              handleHelloResponseChange={this.handleHelloResponseChange.bind(this)}
               sendAppRequest={this.sendAppRequest.bind(this)}
               saveToServer={this.saveToServer.bind(this)}
               getDefaultsFromServer={this.getDefaultsFromServer.bind(this)}

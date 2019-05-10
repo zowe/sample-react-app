@@ -83,7 +83,8 @@ class SamplePage extends React.Component<any, any> {
               </div>
               <div>
                 <label>{t('response')}</label>
-                <textarea style={styles.serverResponse} placeholder={t('response')} defaultValue={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
+                <textarea style={styles.serverResponse} placeholder={t('response')}
+                  value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
               </div>
             </div>
           </div>

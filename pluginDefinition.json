@@ -15,7 +15,9 @@
     "isSingleWindowApp": true,
     "defaultWindowStyle": {
       "width": 800,
-      "height": 450
+      "height": 530,
+      "x": 200,
+      "y": 50
     }
   },
   "dataServices": [

@@ -32,6 +32,7 @@ class SamplePage extends React.Component<any, any> {
         <div>
           <div style={mergeStyles(styles.appComponent, styles.iframeFont, styles.testPanelContainer)}>
             <div style={mergeStyles(styles.testPanel, styles.pluginTestPanel)}>
+              <span style={styles.biggerBoldText}>Plug-in Request Test</span>
               <div style={styles.bottom10}>
                 <span style={styles.biggerBoldText}>{t('plugin_request_test')}</span>
                   {/* Tests the sending of requests to other plugins. Defaults to send a message
@@ -49,17 +50,34 @@ class SamplePage extends React.Component<any, any> {
                   {/* Action types are used to determine what sort of Action is being taken on whatever App instance is the target. Launch simply creates a new instance with the context you provide, but Message can be used to communicate with an already open Instance to drive some action */}        
                   <label style={styles.boldText}>{t('action_type')}</label>
                   <input type="radio" value="Launch" name="actionType" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
+<<<<<<< Updated upstream
                   <label htmlFor="actionLaunch">{t('launch')}</label>
                   <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
                   <label htmlFor="actionMessage">{t('message')}</label>
+=======
+                  <label  style={styles.labelPadding} htmlFor="actionLaunch">Launch</label>
+                  <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
+                  <label  style={styles.labelPadding} htmlFor="actionMessage">Message</label>
+                  <input type="radio" value="Maximize" name="actionType" checked={this.props.actionType == "Maximize"} onChange={this.props.handleActionTypeChange}/>
+                  <label  style={styles.labelPadding} htmlFor="actionLaunch">Maximize</label>
+                  <input type="radio" value="Minimize" name="actionType" checked={this.props.actionType == "Minimize"} onChange={this.props.handleActionTypeChange}/>
+                  <label  style={styles.labelPadding} htmlFor="actionMessage">Minimize</label>
+
+>>>>>>> Stashed changes
                 </div>
                 {/* App target modes are used to determine which instance of an App should be communicated with. You can create a new instance to send the Action to, or you could reuse an existing instance that is open. */}
                 <div>
                   <label style={styles.boldText}>{t('app_target_mode')}</label>
                   <input type="radio" value="PluginCreate" name="targetMode" checked={this.props.appTarget == "PluginCreate"} onChange={this.props.handleAppTargetChange}/>
+<<<<<<< Updated upstream
                   <label htmlFor="targetCreate">{t('create_new')}</label>
                   <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label htmlFor="targetReuse">{t('reuse_any_open')}</label>
+=======
+                  <label  style={styles.labelPadding} htmlFor="targetCreate">Create New</label>
+                  <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
+                  <label  style={styles.labelPadding} htmlFor="targetReuse">Reuse Any Open</label>
+>>>>>>> Stashed changes
                 </div>      
                 <span style={mergeStyles(styles.divInput, styles.boldText)}>{t('parameters')}</span>
                 <div style={styles.divTextareaInput}>
@@ -78,6 +96,7 @@ class SamplePage extends React.Component<any, any> {
                 <span style={styles.biggerBoldText}>{t('dataservice_request_test')}</span>
               </div>
               <div>
+<<<<<<< Updated upstream
                 <input placeholder={t('message')} value={this.props.helloText} onChange={this.props.handleHelloTextChange}/>      
                 <button disabled={this.props.helloText === ''} onClick={this.props.sayHello}>{t('run')}</button>
               </div>
@@ -85,6 +104,14 @@ class SamplePage extends React.Component<any, any> {
                 <label>{t('response')}</label>
                 <textarea readOnly style={styles.serverResponse} placeholder={t('response')}
                   value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
+=======
+                <input placeholder="Message" value={this.props.helloText} style={styles.inputText}  onChange={this.props.handleHelloTextChange}/>      
+                <button style={styles.runButton} onClick={this.props.sayHello}>Run</button>
+              </div>
+              <div>
+                <label style={styles.responseLabel}>Response</label>
+                <textarea style={styles.serverResponse} placeholder="Response" value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
+>>>>>>> Stashed changes
               </div>
             </div>
           </div>

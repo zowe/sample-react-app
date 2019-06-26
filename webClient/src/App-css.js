@@ -12,16 +12,17 @@
 var styles = {
   iframeFont :{
     fontFamily: "sans-serif",
-    fontSize: "0.8em"
+    fontSize: "1.0em"
   },
 
   boldText :{
-    fontWeight: "600"
+    fontWeight: "600",
+    marginRight: "8px"
   },
 
   biggerBoldText :{
-    fontSize: "1.1em",
-    fontWeight: "600"
+    fontWeight: "600",
+    marginRight: "4px"
   },
 
   divInput :{
@@ -29,7 +30,6 @@ var styles = {
     marginBottom: "10px",
     paddingTop: "5px",
     paddingBottom: "5px",
-    width: "300px"
   },
 
   divTextareaInput :{
@@ -37,7 +37,6 @@ var styles = {
     marginBottom: "5px",
     paddingTop: "5px",
     paddingBottom: "5px",
-    width: "95%"
   },
 
   iframeInput :{
@@ -50,16 +49,45 @@ var styles = {
   },
 
   inputHeight :{
-    height: "20px"
+    height: "28px",
+    border: "1px solid grey"
   },
 
   inputText :{
+    border: "1px solid grey",
+    borderRadius: "4px"
+  },
+  responseLabel :{
+    marginTop: "8px"
+  },
+  runButton :{
+    marginLeft: "4px"
+  
   },
 
+  labelPadding: {
+    marginLeft: "4px",
+    marginRight: "12px"
+  
+  },
   iframeButton :{
     borderRadius: "4px",
-    margin: "0px 4px 0px 4px",
-    fontWeight: "700"
+    margin: "4px 0px",
+    marginTop: "8px",
+    width: "31%",
+    padding: "2px",
+    backgroundColor: "transparent",
+    border: "1px solid #047cc0",
+    fontSize: "14px",
+    fontFamily: "Helvetica, Open Sans, Arial, Lucida Grande, sans-serif",
+    color: "#047cc0",
+    width: "31%",
+    height: "2rem",
+    padding: "0 1rem",
+    marginLeft: "4px",
+    '&:hover': {
+             textDecoration: 'underline',
+        },
   },
 
   rightAlign :{
@@ -68,7 +96,6 @@ var styles = {
   },
 
   shadowed :{
-    boxShadow: "3px 3px 10px"
   },
 
   hideIt :{
@@ -76,15 +103,18 @@ var styles = {
   },
 
   bottom10 :{
-    marginBottom: "10px"
+    marginBottom: "10px",
+    display: "flex",
+    justifyContent: "center"
   },
 
   displayText :{
     borderRadius: "4px",
     border: "1px solid grey",
     backgroundColor: "white",
-    height: "18px",
-    width: "96%"
+    height: "24px",
+    marginTop: "4px",
+
   },
 
   disableEffect :{
@@ -96,8 +126,10 @@ var styles = {
   },
 
   serverResponse :{
-    width: "100%",
-    height: "180px"
+    width: "96%",
+    height: "412px",
+    border: "1px solid grey",
+    borderRadius: "4px"
   },
 
   testPanel :{
@@ -111,7 +143,9 @@ var styles = {
 
   pluginTestPanel :{
     borderRight: "outset",
-    flexGrow: "1"
+    flexGrow: "1",
+    textAlign: "center",
+    padding: "8px"
   },
 
   dataserviceTestPanel :{

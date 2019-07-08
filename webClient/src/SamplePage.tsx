@@ -65,6 +65,12 @@ class SamplePage extends React.Component<any, any> {
                   <label  style={styles.labelPadding} htmlFor="targetCreate">{t('create_new')}</label>
                   <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label  style={styles.labelPadding} htmlFor="targetReuse">{t('reuse_any_open')}</label>
+                  { this.props.actionType === 'Maximize' || this.props.actionType === 'Minimize' ?
+                    <div>
+                      <label style={styles.labelPadding}>Target ID</label>
+                      <input type="number" onChange={this.props.handleTargetIdChange} value={this.props.targetId}/>
+                    </div> : null
+                  }
                 </div>      
                 <span style={mergeStyles(styles.divInput, styles.boldText)}>{t('parameters')}</span>
                 <div style={styles.divTextareaInput}>

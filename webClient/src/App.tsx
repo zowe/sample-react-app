@@ -48,6 +48,7 @@ class App extends React.Component<any, any> {
       appId: "org.zowe.terminal.tn3270",
       status: 'status_will_appear_here',
       helloText: "",
+      targetId: 1,
       helloResponse: "",
       destination: ZoweZLUX.uriBroker.pluginRESTUri(this.props.resources.pluginDefinition.getBasePlugin(), 'hello',"")
     };
@@ -135,6 +136,10 @@ class App extends React.Component<any, any> {
 
   handleHelloResponseChange(e) {
     this.setState({helloResponse: e.target.value});
+  }
+
+  handleTargetIdChange(e) {
+    this.setState({targetId: e.target.value});
   }
 
   getDefaultsFromServer() {
@@ -283,11 +288,13 @@ class App extends React.Component<any, any> {
           */
           let action = dispatcher.makeAction(actionID, actionTitle, mode,type,appId,argumentFormatter);
           let argumentData = {'data':(parameters ? parameters : requestText)};
+          let targetId = parseInt(this.state.targetId);
+          this.log.info(typeof targetId)
           this.log.info((message = this.t('request_succeeded')));
           this.setState({status: message});
           /*Just because the Action is invoked does not mean the target App will accept it. We've made an Action on the fly,
             So the data could be in any shape under the "data" attribute and it is up to the target App to take action or ignore this request*/
-          dispatcher.invokeAction(action,argumentData);
+          dispatcher.invokeAction(action,argumentData,targetId);
         } else {
           this.log.warn((message = 'Invalid target mode or action type specified'));        
         }
@@ -317,6 +324,7 @@ class App extends React.Component<any, any> {
               appTarget={this.state.appTarget}
               parameters={this.state.parameters}
               appId={this.state.appId}
+              targetId={this.state.targetId}
               status={t(this.state.status)}
               helloText={this.state.helloText}
               helloResponse={this.state.helloResponse}
@@ -327,6 +335,7 @@ class App extends React.Component<any, any> {
               saveToServer={this.saveToServer.bind(this)}
               getDefaultsFromServer={this.getDefaultsFromServer.bind(this)}
               handleAppIdChange={this.handleAppIdChange.bind(this)}
+              handleTargetIdChange={this.handleTargetIdChange.bind(this)}
               handleParameterChange={this.handleParameterChange.bind(this)}
               handleAppTargetChange={this.handleAppTargetChange.bind(this)}
               handleActionTypeChange={this.handleActionTypeChange.bind(this)}

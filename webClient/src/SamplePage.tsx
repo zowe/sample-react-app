@@ -49,13 +49,13 @@ class SamplePage extends React.Component<any, any> {
                   {/* Action types are used to determine what sort of Action is being taken on whatever App instance is the target. Launch simply creates a new instance with the context you provide, but Message can be used to communicate with an already open Instance to drive some action */}        
                   <label style={styles.boldText}>{t('action_type')}</label>
                   <input type="radio" value="Launch" name="actionType" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
-                  <label  style={styles.labelPadding} htmlFor="actionLaunch">Launch</label>
+                  <label  style={styles.labelPadding} htmlFor="actionLaunch">{t('launch')}</label>
                   <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
-                  <label  style={styles.labelPadding} htmlFor="actionMessage">Message</label>
+                  <label  style={styles.labelPadding} htmlFor="actionMessage">{t('message')}</label>
                   <input type="radio" value="Maximize" name="actionType" checked={this.props.actionType == "Maximize"} onChange={this.props.handleActionTypeChange}/>
-                  <label  style={styles.labelPadding} htmlFor="actionLaunch">Maximize</label>
+                  <label  style={styles.labelPadding} htmlFor="actionLaunch">{t('maximize')}</label>
                   <input type="radio" value="Minimize" name="actionType" checked={this.props.actionType == "Minimize"} onChange={this.props.handleActionTypeChange}/>
-                  <label  style={styles.labelPadding} htmlFor="actionMessage">Minimize</label>
+                  <label  style={styles.labelPadding} htmlFor="actionMessage">{t('minimize')}</label>
 
                 </div>
                 {/* App target modes are used to determine which instance of an App should be communicated with. You can create a new instance to send the Action to, or you could reuse an existing instance that is open. */}
@@ -67,7 +67,7 @@ class SamplePage extends React.Component<any, any> {
                   <label  style={styles.labelPadding} htmlFor="targetReuse">{t('reuse_any_open')}</label>
                   { this.props.actionType === 'Maximize' || this.props.actionType === 'Minimize' ?
                     <div>
-                      <label style={styles.labelPadding}>Target ID</label>
+                      <label style={styles.labelPadding}>{t('target_id')}</label>
                       <input type="number" onChange={this.props.handleTargetIdChange} value={this.props.targetId}/>
                     </div> : null
                   }

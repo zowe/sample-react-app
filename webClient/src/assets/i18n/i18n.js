@@ -31,7 +31,10 @@ const en = {
 		empty_reply_from_server: "Empty Reply from Server",
 		could_not_find_app_with_id_provided: "Could not find app with ID provided",
 		status_will_appear_here: "Status will appear here",
-		request_succeeded: "App request succeeded"
+    request_succeeded: "App request succeeded",
+    maximize: "Maximize",
+    minimize: "Minimize",
+    target_id: "Target ID"
 	}
 }
 
@@ -61,7 +64,10 @@ const ru = {
 		empty_reply_from_server: "Пустой ответ от сервера",
 		could_not_find_app_with_id_provided: "Не удалось найти приложение с указанным идентификатором",
 		status_will_appear_here: "Статус появится здесь",
-		request_succeeded: "Запрос приложения выполнен успешно",
+    request_succeeded: "Запрос приложения выполнен успешно",
+    maximize: "________",
+    minimize: "________",
+    target_id: "______ __"
 	}
 }
 
@@ -93,7 +99,10 @@ const ja = {
 		empty_reply_from_server: "サーバーからの応答が空です。",
 		could_not_find_app_with_id_provided: "指定されたIDのアプリケーションが見つかりませんでした。",
 		status_will_appear_here: "スタータスをここに表示",
-		request_succeeded: "アプリケーション・リクエストが成功しました"
+    request_succeeded: "アプリケーション・リクエストが成功しました",
+    maximize: "________",
+    minimize: "________",
+    target_id: "______ __"
 	}
 }
 
@@ -125,7 +134,10 @@ const zh = {
 		empty_reply_from_server: "服务器没有回复",
 		could_not_find_app_with_id_provided: "无法找到对应ID的应用",
 		status_will_appear_here: "状态显示",
-		request_succeeded: "应用请求成功"
+    request_succeeded: "应用请求成功",
+    maximize: "________",
+    minimize: "________",
+    target_id: "______ __"
 	}
 }
 
@@ -157,7 +169,10 @@ const fr = {
 		empty_reply_from_server: "La réponse du serveur est vide",
 		could_not_find_app_with_id_provided: "L'ID fourni n'appartient pas à une application existante",
 		status_will_appear_here: "Le statu apparait ici",
-		request_succeeded: "Demande à l’application réussie"
+    request_succeeded: "Demande à l’application réussie",
+    maximize: "________",
+    minimize: "________",
+    target_id: "______ __"
 	}
 }
 
@@ -189,7 +204,10 @@ const de = {
 		empty_reply_from_server: "Leere Antwort von Server erhalten",
 		could_not_find_app_with_id_provided: "Anwendung mit angegebener Kennung wurde nicht gefunden",
 		status_will_appear_here: "Der Status wird hier angezeigt",
-		request_succeeded: "Anfrage erfolgreich abgeschlossen"
+    request_succeeded: "Anfrage erfolgreich abgeschlossen",
+    maximize: "________",
+    minimize: "________",
+    target_id: "______ __"
 	}
 }
 

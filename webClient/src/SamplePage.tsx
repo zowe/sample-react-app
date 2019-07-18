@@ -79,11 +79,11 @@ class SamplePage extends React.Component<any, any> {
               </div>
               <div>
                 <input placeholder={t('message')} value={this.props.helloText} onChange={this.props.handleHelloTextChange}/>      
-                <button onClick={this.props.sayHello}>{t('run')}</button>
+                <button disabled={this.props.helloText === ''} onClick={this.props.sayHello}>{t('run')}</button>
               </div>
               <div>
                 <label>{t('response')}</label>
-                <textarea style={styles.serverResponse} placeholder={t('response')}
+                <textarea readOnly style={styles.serverResponse} placeholder={t('response')}
                   value={this.props.helloResponse} onChange={this.props.handleHelloResponseChange}></textarea>
               </div>
             </div>

@@ -43,11 +43,19 @@ class SamplePage extends React.Component<any, any> {
               <span style={styles.boldText}>{t('application_identifier')}</span>
               <div>
                 <div style={styles.divInput}>
-                  <input style={mergeStyles(styles.iframeInput, styles.inputHeight, styles.inputCorner, styles.inputText, styles.shadowed)} type="text" value={this.props.appId} onChange={this.props.handleAppIdChange}/>
-                </div>
+      <select style={mergeStyles(styles.iframeInput, styles.inputHeight, styles.inputCorner, styles.inputText, styles.shadowed)} id="appInput" disabled={this.props.appTarget === "PluginSpecifyTargetID" || this.props.actionType === 'Maximize' || this.props.actionType === 'Minimize'}  onChange={this.props.handleAppIdChange}>
+      {
+        this.props.appIdOptions.map(el => <option value={el.value}>{el.description}</option>)
+      }
+      </select>
+      </div>
+        <label style={styles.boldText}>{t('target_id')}</label>
+              <div style={styles.divInput}>
+                  <input style={mergeStyles(styles.iframeInput, styles.inputHeight, styles.inputCorner, styles.inputText, styles.shadowed)} type="number" id="targetInput" disabled={this.props.appTarget !== "PluginSpecifyTargetID" || this.props.actionType === "Launch" || this.props.actionType === "Message" } onChange={this.props.handleTargetIdChange} value={this.props.targetId}/>
+              </div>
                 <div>
                   {/* Action types are used to determine what sort of Action is being taken on whatever App instance is the target. Launch simply creates a new instance with the context you provide, but Message can be used to communicate with an already open Instance to drive some action */}        
-                  <label style={styles.boldText}>{t('action_type')}</label>
+      <label style={styles.boldText}>{t('action_type')}</label>
                   <input type="radio" value="Launch" name="actionType" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
                   <label  style={styles.labelPadding} htmlFor="actionLaunch">{t('launch')}</label>
                   <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
@@ -65,12 +73,8 @@ class SamplePage extends React.Component<any, any> {
                   <label  style={styles.labelPadding} htmlFor="targetCreate">{t('create_new')}</label>
                   <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label  style={styles.labelPadding} htmlFor="targetReuse">{t('reuse_any_open')}</label>
-                  { this.props.actionType === 'Maximize' || this.props.actionType === 'Minimize' ?
-                    <div>
-                      <label style={styles.labelPadding}>{t('target_id')}</label>
-                      <input type="number" onChange={this.props.handleTargetIdChange} value={this.props.targetId}/>
-                    </div> : null
-                  }
+                  <input type="radio" value="PluginSpecifyTargetID" name="targetMode" checked={this.props.appTarget == "PluginSpecifyTargetID"} onChange={this.props.handleAppTargetChange}/>
+                  <label  style={styles.labelPadding} htmlFor="targetReuse">Specify Target ID</label>
                 </div>      
                 <span style={mergeStyles(styles.divInput, styles.boldText)}>{t('parameters')}</span>
                 <div style={styles.divTextareaInput}>

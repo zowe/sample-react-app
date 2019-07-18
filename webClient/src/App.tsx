@@ -25,6 +25,31 @@ class App extends React.Component<any, any> {
     } else {
       this.state = this.getDefaultState();
     }
+    fetch('/plugins?type=all')
+      .then((res) => res.json())
+      .then((pluginData) => {
+        const pluginDefinitions = pluginData.pluginDefinitions;
+        for (const plugin of pluginDefinitions) {
+         if (plugin.identifier) {
+            if (plugin.webContent) {
+              if (plugin.webContent.launchDefinition) {
+                const options = this.state.appIdOptions;
+                options.push(new ApplicationIdentifierOption(
+                 `${plugin.webContent.launchDefinition.pluginShortNameDefault} - ${plugin.identifier}`, plugin.identifier));
+
+                this.setState({appIdOptions: options});
+            } else {
+               const options = this.state.appIdOptions;
+               options.push(new ApplicationIdentifierOption(plugin.identifier, plugin.identifier));
+
+               this.setState({appIdOptions: options});
+
+            }
+          }
+         }
+        }
+      }).then(() => this.setState({appId: this.state.appIdOptions[0].value}));
+
 
   };
 
@@ -47,6 +72,7 @@ class App extends React.Component<any, any> {
         }}`,
       appId: "org.zowe.terminal.tn3270",
       status: 'status_will_appear_here',
+      appIdOptions: [],
       helloText: "",
       targetId: 1,
       helloResponse: "",
@@ -249,6 +275,10 @@ class App extends React.Component<any, any> {
   }
 
   sendAppRequest() {
+    if (document.getElementById('targetInput')!.getAttribute('disabled') === '' && document.getElementById('appInput')!.getAttribute('disabled') === '' ) {
+      return;
+    }
+
     var requestText = this.state.parameters;
     var parameters = null;
     /*Parameters for Actions could be a number, string, or object. The actual event context of an Action that an App recieves will be an object with attributes filled in via these parameters*/
@@ -273,7 +303,7 @@ class App extends React.Component<any, any> {
       let dispatcher = ZoweZLUX.dispatcher;
       let pluginManager = ZoweZLUX.pluginManager;
       let plugin = pluginManager.getPlugin(appId);
-      if (plugin) {
+      if (plugin || this.state.appTarget === 'PluginSpecifyTargetID') {
         let type;
         type = dispatcher.constants.ActionType[this.state.actionType];
         let mode;
@@ -328,6 +358,7 @@ class App extends React.Component<any, any> {
               status={t(this.state.status)}
               helloText={this.state.helloText}
               helloResponse={this.state.helloResponse}
+              appIdOptions={this.state.appIdOptions}
               sayHello={this.sayHello.bind(this)}
               handleHelloTextChange={this.handleHelloTextChange.bind(this)}
               handleHelloResponseChange={this.handleHelloResponseChange.bind(this)}
@@ -345,5 +376,7 @@ class App extends React.Component<any, any> {
     );
   }
 }
-
+class ApplicationIdentifierOption {
+   constructor(public description: string, public value: string) {}
+}
 export default withTranslation('translation')(App);

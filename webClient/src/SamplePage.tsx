@@ -33,7 +33,7 @@ class SamplePage extends React.Component<any, any> {
           <div style={mergeStyles(styles.appComponent, styles.iframeFont, styles.testPanelContainer)}>
             <div style={mergeStyles(styles.testPanel, styles.pluginTestPanel)}>
               <div style={styles.bottom10}>
-                <span style={styles.biggerBoldText}>{t('plugin_request_test')}</span>
+                <span style={mergeStyles(styles.biggerBoldText, styles.paddingRight8)}>{t('plugin_request_test')}</span>
                   {/* Tests the sending of requests to other plugins. Defaults to send a message
                   to itself (and responding) to show more parts of the API */}
                 <button style={mergeStyles(styles.iframeButton, styles.shadowed)} type="button" onClick={this.props.sendAppRequest}>{t('send_app_request')}</button>
@@ -47,17 +47,17 @@ class SamplePage extends React.Component<any, any> {
                 </div>
                 <div>
                   {/* Action types are used to determine what sort of Action is being taken on whatever App instance is the target. Launch simply creates a new instance with the context you provide, but Message can be used to communicate with an already open Instance to drive some action */}        
-                  <label style={styles.boldText}>{t('action_type')}</label>
+                  <label style={mergeStyles(styles.boldText, styles.paddingRight8)} >{t('action_type')}</label>
                   <input type="radio" value="Launch" name="actionType" checked={this.props.actionType == "Launch"} onChange={this.props.handleActionTypeChange}/>
-                  <label htmlFor="actionLaunch">{t('launch')}</label>
+                  <label htmlFor="actionLaunch" style={styles.paddingRight8} >{t('launch')}</label>
                   <input type="radio" value="Message" name="actionType" checked={this.props.actionType == "Message"} onChange={this.props.handleActionTypeChange}/>
                   <label htmlFor="actionMessage">{t('message')}</label>
                 </div>
                 {/* App target modes are used to determine which instance of an App should be communicated with. You can create a new instance to send the Action to, or you could reuse an existing instance that is open. */}
                 <div>
-                  <label style={styles.boldText}>{t('app_target_mode')}</label>
+                  <label style={mergeStyles(styles.boldText, styles.paddingRight8)}>{t('app_target_mode')}</label>
                   <input type="radio" value="PluginCreate" name="targetMode" checked={this.props.appTarget == "PluginCreate"} onChange={this.props.handleAppTargetChange}/>
-                  <label htmlFor="targetCreate">{t('create_new')}</label>
+                  <label htmlFor="targetCreate" style={styles.paddingRight8}>{t('create_new')}</label>
                   <input type="radio" value="PluginFindAnyOrCreate" name="targetMode" checked={this.props.appTarget == "PluginFindAnyOrCreate"} onChange={this.props.handleAppTargetChange}/>
                   <label htmlFor="targetReuse">{t('reuse_any_open')}</label>
                 </div>      
@@ -68,8 +68,9 @@ class SamplePage extends React.Component<any, any> {
                   <textarea style={mergeStyles(styles.iframeInput, styles.inputCorner, styles.inputText, styles.shadowed)} rows={10} cols={50} defaultValue={this.props.parameters} onChange={this.props.handleParameterChange}></textarea>
                 </div>
                 <div style={styles.hundredWidth}>
-                  <span>{t('app_status_or_message')}</span>
-                  <p style={mergeStyles(styles.displayText, styles.shadowed, styles.disableEffect)} id="status">{this.props.status}</p>
+                  <span 
+                  >{t('app_status_or_message')}</span>
+                  <p style={mergeStyles(styles.displayText, styles.shadowed, styles.disableEffect, styles.paddingLeft3)} id="status">{this.props.status}</p>
                 </div>
               </div>
             </div>

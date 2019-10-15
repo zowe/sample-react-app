@@ -14,8 +14,8 @@
     "descriptionDefault": "Sample App Showcasing React Adapter",
     "isSingleWindowApp": true,
     "defaultWindowStyle": {
-      "width": 800,
-      "height": 450
+      "width": 900,
+      "height": 420
     }
   },
   "dataServices": [

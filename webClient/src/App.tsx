@@ -33,18 +33,19 @@ class App extends React.Component<any, any> {
       actionType: "Launch",
       appTarget: "PluginCreate",
       parameters: 
-      `{"type":"connect",
-        "connectionSettings":{
-          "host":"localhost",
-          "port":23,
-          "deviceType":5,
-          "alternateHeight":60,
-          "alternateWidth":132,
-          "oiaEnabled": true,
-          "security": {
-            "type":0
-          }
-        }}`,
+      `{ "type":"connect",
+  "connectionSettings":{
+      "host":"localhost",
+      "port":23,
+      "deviceType":5,
+      "alternateHeight":60,
+      "alternateWidth":132,
+      "oiaEnabled": true,
+      "security": {
+          "type":0
+      }
+  }
+}`,
       appId: "org.zowe.terminal.tn3270",
       status: 'status_will_appear_here',
       helloText: "",
@@ -169,7 +170,7 @@ class App extends React.Component<any, any> {
       });
     }).catch(e => {
       this.log.warn(`Error on getting defaults, e=${e}`);
-      this.setState({status: 'Error getting defaults'});
+      this.setState({status: this.t('Error_getting_defaults')});
     });
   }
 
@@ -200,14 +201,14 @@ class App extends React.Component<any, any> {
           this.log.info(`Saved App ID with HTTP status=${res.status}`);
         }).catch(e => {
           this.log.warn(`Error on saving App ID, e=${e}`);
-          this.setState({status: 'Error saving App ID'});
+          this.setState({status: this.t('Error_saving_App_ID')});
         });
       } else {
         this.log.warn(`Error on saving parameters, response status=${res.status}`);
       }
     }).catch(e => {
       this.log.warn(`Error on saving parameters, e=${e}`);
-      this.setState({status: 'Error saving parameters'});
+      this.setState({status: this.t('Error_saving_parameters')});
     });
   }
 

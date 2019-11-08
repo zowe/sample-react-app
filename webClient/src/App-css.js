@@ -58,7 +58,7 @@ var styles = {
 
   iframeButton :{
     borderRadius: "4px",
-    margin: "0px 4px 0px 4px",
+    margin: "0px 0px 0px 4px",
     fontWeight: "700"
   },
 
@@ -84,7 +84,9 @@ var styles = {
     border: "1px solid grey",
     backgroundColor: "white",
     height: "18px",
-    width: "96%"
+    width: "96%",
+    marginTop: "3px",
+    fontSize: "small"
   },
 
   disableEffect :{
@@ -116,6 +118,14 @@ var styles = {
 
   dataserviceTestPanel :{
     borderLeft: "outset"
+  },
+
+  paddingRight8 :{
+    paddingRight: "8px"
+  },
+
+  paddingLeft3 :{
+    paddingLeft: "3px"
   }
 };
   /*

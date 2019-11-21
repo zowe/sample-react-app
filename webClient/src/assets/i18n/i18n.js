@@ -30,8 +30,10 @@ const en = {
 		no_or_empty_message_received_from_client: "No Or Empty Message Received from Client",
 		empty_reply_from_server: "Empty Reply from Server",
 		could_not_find_app_with_id_provided: "Could not find app with ID provided",
-		status_will_appear_here: "Status will appear here",
-		request_succeeded: "App request succeeded"
+		request_succeeded: "App request succeeded",
+		Error_getting_defaults: "Error getting defaults",
+		Error_saving_App_ID: "Error saving App ID",
+		Error_saving_parameters: "Error saving parameters" 
 	}
 }
 
@@ -62,6 +64,9 @@ const ru = {
 		could_not_find_app_with_id_provided: "Не удалось найти приложение с указанным идентификатором",
 		status_will_appear_here: "Статус появится здесь",
 		request_succeeded: "Запрос приложения выполнен успешно",
+		Error_getting_defaults: "Error getting defaults",
+		Error_saving_App_ID: "Error saving App ID",
+		Error_saving_parameters: "Error saving parameters" 
 	}
 }
 
@@ -92,8 +97,10 @@ const ja = {
 		no_or_empty_message_received_from_client: "クライアントから受信したメッセージがない、あるいは空です。",
 		empty_reply_from_server: "サーバーからの応答が空です。",
 		could_not_find_app_with_id_provided: "指定されたIDのアプリケーションが見つかりませんでした。",
-		status_will_appear_here: "スタータスをここに表示",
-		request_succeeded: "アプリケーション・リクエストが成功しました"
+		request_succeeded: "アプリケーション・リクエストが成功しました",
+		Error_getting_defaults: "Error getting defaults",
+		Error_saving_App_ID: "Error saving App ID",
+		Error_saving_parameters: "Error saving parameters"
 	}
 }
 
@@ -124,8 +131,10 @@ const zh = {
 		no_or_empty_message_received_from_client: "从客户端收到空消息",
 		empty_reply_from_server: "服务器没有回复",
 		could_not_find_app_with_id_provided: "无法找到对应ID的应用",
-		status_will_appear_here: "状态显示",
-		request_succeeded: "应用请求成功"
+		request_succeeded: "应用请求成功",
+		Error_getting_defaults: "Error getting defaults",
+		Error_saving_App_ID: "Error saving App ID",
+		Error_saving_parameters: "Error saving parameters"
 	}
 }
 
@@ -134,7 +143,7 @@ const fr = {
 		action_type: "Type d'Action",
 		app_request_succeeded: "La requête a réussie",
 		app_request_test: "Test de requête",
-		app_status_or_message: "Statu de l'Application ou Message",
+		app_status_or_message: "Etat courant de l'Application ou Message",
 		app_target_mode: "Mode d'Utilisation de l'Application",
 		application_identifier: "Identité de l'Application",
 		close: "Fermer",
@@ -152,12 +161,14 @@ const fr = {
 		save_to_server: "Sauvegarder sur le Serveur",
 		send_app_request: "Envoyer la Requête Application",
 		server_replied_with: "Réponse du Serveur",
-		status_will_appear_here: "Le statu apparait ici",
+		status_will_appear_here: "Les détails apparaissent ici",
 		no_or_empty_message_received_from_client: "Pas de réponse du client",
 		empty_reply_from_server: "La réponse du serveur est vide",
-		could_not_find_app_with_id_provided: "L'ID fourni n'appartient pas à une application existante",
-		status_will_appear_here: "Le statu apparait ici",
-		request_succeeded: "Demande à l’application réussie"
+		could_not_find_app_with_id_provided: "L'identifiant fourni n'appartient pas à une application existante",
+		request_succeeded: "Demande à l’application réussie",
+		Error_getting_defaults: "Erreur lors de l'obtention des valeurs par défaut",
+		Error_saving_App_ID: "Erreur lors de l'enregistrement de l'identifiant de l'application",
+		Error_saving_parameters: "Erreur lors de la sauvegarde des paramètres"
 	}
 }
 
@@ -188,8 +199,10 @@ const de = {
 		no_or_empty_message_received_from_client: "Keine/Leere Nachricht vom Client erhalten",
 		empty_reply_from_server: "Leere Antwort von Server erhalten",
 		could_not_find_app_with_id_provided: "Anwendung mit angegebener Kennung wurde nicht gefunden",
-		status_will_appear_here: "Der Status wird hier angezeigt",
-		request_succeeded: "Anfrage erfolgreich abgeschlossen"
+		request_succeeded: "Anfrage erfolgreich abgeschlossen",
+		Error_getting_defaults: "Error getting defaults",
+		Error_saving_App_ID: "Error saving App ID",
+		Error_saving_parameters: "Error saving parameters"
 	}
 }
 

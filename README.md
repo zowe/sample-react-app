@@ -18,7 +18,7 @@ By the end of this tutorial, you will:
 
 Further tutorials are present within this repository to expand upon what you learn here, adding new features to the App to teach about different aspects of Apps within Zowe.
 
-**Note: This tutorial assumes you already have a Zowe installation ready to be run. If you do not, try setting one up via the README at [zlux-example-server](https://github.com/zowe/zlux-example-server) before continuing.**
+**Note: This tutorial assumes you already have a Zowe installation ready to be run. If you do not, try setting one up via the README at [zlux-app-server](https://github.com/zowe/zlux-app-server) before continuing.**
 
 So, let's get started!
 
@@ -225,7 +225,7 @@ export default App;
 
 Let's stop here and inspect what we just did. If you're new to React, you might wonder how this is a valid file, as the bottom `render()` call appears to be mixing XML with scripting. 
 React tries to make web development more convenient and organizable by structuring code such that the layout description of the UI is closely tied to the logic that controls it. 
-Originally, React accomplished this by a unique type of file "JSX", which allowed you to easily write HTML within Javascript. But, Typescript is much preferred to Javascript for maintainable code... (a bit more on this here)[https://github.com/zowe/sample-app/blob/lab/step-1-hello-world/README.md#why-typescript]. So, instead, we've written a TSX file, which is the Typescript equivalent of a JSX file that React uses.
+Originally, React accomplished this by a unique type of file "JSX", which allowed you to easily write HTML within Javascript. But, Typescript is much preferred to Javascript for maintainable code... [a bit more on this here](https://github.com/zowe/sample-angular-app/blob/lab/step-1-hello-world/README.md#why-typescript). So, instead, we've written a TSX file, which is the Typescript equivalent of a JSX file that React uses.
 
 ### Introducing Zowe Resources
 
@@ -254,7 +254,7 @@ class App extends React.Component<any, any> {
 The Component is given a props object on creation, but what's **ZLUX.ComponentLogger**? This is one of a variety Zowe contextual objects provided by ZLUX - the Zowe UI framework.
 From this constructor alone, you can see two types of interesitng Zowe-specific objects.
 For the first type, the framework provides these contextual objects via `this.props.resources`, and you can see that two such objects are utilized here: the logger and the pluginDefinition.
-You can see the full list of objects available via `this.props.resources` within (zlux-app-manager)[https://github.com/zowe/zlux-app-manager/blob/master/virtual-desktop/src/pluginlib/react-inject-resources.ts], the one of the repositories that comprises the Zowe UI framework. Some of these objects generate events, others present info, but all are unique to your individual App - and some unique to the individual instance of that App. So, these can be a great help to support your App in the Zowe environment as well as to act upon user actions.
+You can see the full list of objects available via `this.props.resources` within [zlux-app-manager](https://github.com/zowe/zlux-app-manager/blob/master/virtual-desktop/src/pluginlib/react-inject-resources.ts), the one of the repositories that comprises the Zowe UI framework. Some of these objects generate events, others present info, but all are unique to your individual App - and some unique to the individual instance of that App. So, these can be a great help to support your App in the Zowe environment as well as to act upon user actions.
 
 The second interesting Zowe-specific object type you see is here:
 ```typescript
@@ -548,27 +548,10 @@ OK, after the first execution of the transpilation and packaging concludes, you 
 
 
 ## Adding Your App to the Desktop
-At this point, your sample-react-app folder contains files for an App that could be added to a Zowe instance. We'll add this to our own Zowe instance. First, ensure that the Zowe App server is not running. Then, navigate to the instance's root folder, `/zlux-example-server`.
+At this point, your sample-react-app folder contains files for an App that could be added to a Zowe instance. We'll add this to our own Zowe instance. Follow [this Installing Guide](https://github.com/zowe/zlux/wiki/Installing-Plugins), and you'll be ready to use the App in the Desktop. 
 
-Within, you'll see a folder, **plugins**. Take a look at one of the files within the folder. You can see that these are JSON files with the attributes **identifier** and **pluginLocation**. These files are what we call **Plugin Locators**, since they point to a Plugin to be included into the server.
-
-Let's make one ourselves. Make a file `/zlux-example-server/plugins/org.zowe.zlux.sample.react.json`, with these contents:
-```json
-{
-  "identifier": "org.zowe.zlux.sample.react",
-  "pluginLocation": "../../sample-react-app"
-}
-```
-
-When the server runs, it will check for these sorts of files in its `pluginsDir`, a location known to the server via its specification in the [server configuration file](https://github.com/zowe/zlux/wiki/Configuration-for-zLUX-Proxy-Server-&-ZSS#app-configuration). In our case, this is `/zlux-example-server/deploy/instance/ZLUX/plugins/`.
-
-You could place the JSON directly into that location, but the recommended way to place content into the deploy area is via running the server deployment process.
-Simply:
-1. Open up a (second) command prompt to `zlux-build`
-1. `ant deploy`
-
-Now you're ready to run the server and see your App.
-1. `cd /zlux-example-server/bin`
+You can now start up the server:
+1. `cd /zlux-app-server/bin`
 1. `./nodeCluster.sh` ... if you're testing this in an environment where the ZSS server is not on the same system as the Zowe App Server, you'll instead need to do `./nodeCluster.sh -h \<zss host\> -P \<zss port\>`
 1. Open your browser to `https://hostname:port`, where the hsotname and port are for the Zowe App Server.
 1. Login with your credentials

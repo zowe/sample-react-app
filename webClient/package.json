@@ -33,7 +33,7 @@
     "tslint": "~5.10.0",
     "typescript": "~2.9.0",
     "url-loader": "~1.0.1",
-    "webpack": "~4.0.0",
+    "webpack": "~4.41.6",
     "webpack-cli": "~3.0.0",
     "webpack-config": "~7.5.0"
   }

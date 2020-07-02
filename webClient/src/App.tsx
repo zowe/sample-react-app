@@ -16,6 +16,8 @@ import { withTranslation } from 'react-i18next';
 class App extends React.Component<any, any> {
   private log: ZLUX.ComponentLogger;
   t: any;
+  sessionEvents:any;
+  autoSaveEvent:any;
   constructor(props){
     super(props);
     this.log = this.props.resources.logger;
@@ -25,6 +27,12 @@ class App extends React.Component<any, any> {
     } else {
       this.state = this.getDefaultState();
     }
+    this.sessionEvents = this.props.resources.sessionEvents;
+    this.autoSaveEvent = this.sessionEvents.autosaveEmitter.subscribe((saveThis: any)=> {
+      if (saveThis) {
+        saveThis({'appData':{'requestText':this.state.parameters,'targetAppId':this.state.appId}});
+      }
+    });
 
   };
 
@@ -73,8 +81,8 @@ class App extends React.Component<any, any> {
         if (mode == 'PluginCreate' || mode == 'PluginFindAnyOrCreate') {
           this.updateOrInitState({actionType: actionType,
                                   appTarget: mode,
-                                  appId: data.targetAppId,
-                                  parameters: data.requestText});
+                                  appId: data.appData.targetAppId,
+                                  parameters: data.appData.requestText});
         } else {
           msg = `Invalid target mode given (${mode})`;
           this.log.warn(msg);
@@ -336,6 +344,10 @@ class App extends React.Component<any, any> {
         </MemoryRouter>
     );
   }
+
+  componentWillUnmount(){
+    this.autoSaveEvent.unsubscribe();
+ }
 }
 
 export default withTranslation('translation')(App);

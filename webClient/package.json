@@ -11,18 +11,18 @@
     "react-dom": "~16.8.6",
     "react-i18next": "~10.9.0",
     "react-router": "~4.3.1",
-    "react-scripts-ts": "2.16.0"
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "webpack --progress --colors",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@types/jest": "~23.0.2",
     "@types/react": "~16.3.18",
     "@types/react-dom": "~16.0.11",
-    "copy-webpack-plugin": "~4.5.2",
+    "copy-webpack-plugin": "~5.1.2",
     "css-loader": "~1.0.0",
     "exports-loader": "~0.7.0",
     "file-loader": "~1.1.11",

@@ -87,8 +87,8 @@ jobs:
         if: success()
         with:
           artifacts: |
-            .pax/explorer-ip.pax
-            .pax/explorer-ip.tar
+            .pax/sample-react-app.pax
+            .pax/sample-react-app.tar
           perform-release: ${{ github.event.inputs.PERFORM_RELEASE }}
 
       - name: '[Release 1] Release (if necessary)'

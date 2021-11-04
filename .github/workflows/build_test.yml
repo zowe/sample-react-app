@@ -61,8 +61,8 @@ jobs:
           github-user: ${{ secrets.ZOWE_ROBOT_USER }}
           github-password: ${{ secrets.ZOWE_ROBOT_TOKEN }}
           github-email: ${{ secrets.ZOWE_ROBOT_EMAIL }}
-          
-     - name: '[Prep 5] build and test plugin'
+      
+      - name: '[Prep 5] build and test plugin'
         uses: zowe-actions/zlux-builds/zlux-plugins@users/jstruga/testplugins
         with:
           build-zss: false

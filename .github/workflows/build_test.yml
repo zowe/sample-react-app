@@ -62,8 +62,9 @@ jobs:
           github-password: ${{ secrets.ZOWE_ROBOT_TOKEN }}
           github-email: ${{ secrets.ZOWE_ROBOT_EMAIL }}
       
-      - name: '[Prep 5] build and test plugin'
-        uses: zowe-actions/zlux-builds/zlux-plugins@users/jstruga/testplugins
+      - name: '[Packaging] Make pax'
+        uses: zowe-actions/zlux-builds/make-pax@users/jstruga/testplugins
         with:
-          build-zss: false
- 
+          pax-ssh-username: ${{ secrets.SSH_MARIST_USERNAME }}
+          pax-ssh-password: ${{ secrets.SSH_MARIST_RACF_PASSWORD }}
+          

@@ -62,6 +62,11 @@ jobs:
           github-password: ${{ secrets.ZOWE_ROBOT_TOKEN }}
           github-email: ${{ secrets.ZOWE_ROBOT_EMAIL }}
       
+      - name: '[Prep 5] Setup Node'
+        uses: actions/setup-node@v2
+        with:
+          node-version: 10.24.1
+      
       - name: '[Packaging] Make pax'
         uses: zowe-actions/zlux-builds/make-pax@users/jstruga/testplugins
         with:

@@ -8,8 +8,8 @@ on:
   
   workflow_dispatch:
     inputs: 
-      BRANC_NAME:
-        description: 'Specify branch name you would like to build'
+      BRANCH_NAME:
+        description: 'Specify branch name or PR (e.g. PR-41)'
         required: false
       BUILD_VERSION:
         description: 'Specify version you would like to build or override'
@@ -60,13 +60,14 @@ jobs:
           github-user: ${{ secrets.ZOWE_ROBOT_USER }}
           github-password: ${{ secrets.ZOWE_ROBOT_TOKEN }}
           github-email: ${{ secrets.ZOWE_ROBOT_EMAIL }}
-      
-      - name: '[Prep 5] Setup Node'
-        uses: actions/setup-node@v2
+          github-branch: ${{ github.event.inputs.BRANCH_NAME }}
+          
+      - name: '[Prep 5] build'
+        uses: zowe-actions/zlux-builds/zlux-plugins@users/jstruga/testplugins
         with:
-          node-version: 10.24.1
-      
-      - name: '[Packaging] Make pax'
+          build-zss: false
+        
+      - name: '[Prep 6] packaging'
         uses: zowe-actions/zlux-builds/make-pax@users/jstruga/testplugins
         with:
           pax-ssh-username: ${{ secrets.SSH_MARIST_USERNAME }}

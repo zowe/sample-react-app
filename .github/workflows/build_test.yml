@@ -49,12 +49,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-cache-node-modules-
       
-      - name: '[Prep 3] Setup jFrog CLI'
+      - name: '[Prep 3] Setup Node'
+        uses: actions/setup-node@v2
+        with:
+          node-version: 10.24.1
+      
+      
+      - name: '[Prep 4] Setup jFrog CLI'
         uses: jfrog/setup-jfrog-cli@v2
         env:
           JF_ARTIFACTORY_1: ${{ secrets.JF_ARTIFACTORY_TOKEN }}
           
-      - name: '[Prep 4] prepare workflow'
+      - name: '[Prep 5] prepare workflow'
         uses: zowe-actions/zlux-builds/prepare-workflow@users/jstruga/testplugins
         with:
           github-user: ${{ secrets.ZOWE_ROBOT_USER }}
@@ -62,17 +68,17 @@ jobs:
           github-email: ${{ secrets.ZOWE_ROBOT_EMAIL }}
           github-branch: ${{ github.event.inputs.BRANCH_NAME }}
           
-      - name: '[Prep 5] build'
+      - name: '[Prep 6] build'
         uses: zowe-actions/zlux-builds/zlux-plugins@users/jstruga/testplugins
         with:
           build-zss: false
         
-      - name: '[Prep 6] packaging'
+      - name: '[Prep 7] packaging'
         uses: zowe-actions/zlux-builds/make-pax@users/jstruga/testplugins
         with:
           pax-ssh-username: ${{ secrets.SSH_MARIST_USERNAME }}
           pax-ssh-password: ${{ secrets.SSH_MARIST_RACF_PASSWORD }}
           
-      - name: '[Prep 7] deploy '
+      - name: '[Prep 8] deploy '
         uses: zowe-actions/zlux-builds/deploy-pax@users/jstruga/testplugins
           

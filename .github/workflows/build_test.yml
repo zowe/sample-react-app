@@ -78,6 +78,7 @@ jobs:
         with:
           pax-ssh-username: ${{ secrets.SSH_MARIST_USERNAME }}
           pax-ssh-password: ${{ secrets.SSH_MARIST_RACF_PASSWORD }}
+          pax-name: sample-react-app
           
       - name: '[Prep 8] deploy '
         uses: zowe-actions/zlux-builds/deploy-pax@users/jstruga/testplugins

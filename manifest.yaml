@@ -1,0 +1,28 @@
+---
+name: react-sample
+id: org.zowe.zlux.sample.react
+# Without the v
+version: 2.0.0
+# Human readable component name
+title: React Sample
+# Human readable component description
+description: 'Sample App Showcasing React Adapter'
+homepage: https://zowe.org
+keywords:
+  - zlux
+  - appfw
+  - app
+  - react
+  - sample
+license: EPL-2.0
+repository:
+  type: git
+  url: https://github.com/zowe/sample-react-app.git
+# we do not specify encoding here because its already tagged ascii
+build:
+  branch: "{{build.branch}}"
+  number: "{{build.number}}"
+  commitHash: "{{build.commitHash}}"
+  timestamp: "{{build.timestamp}}"
+appfwPlugins:
+  - path: .

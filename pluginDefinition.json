@@ -1,8 +1,11 @@
 {
   "identifier": "org.zowe.zlux.sample.react",
-  "apiVersion": "1.0.0",
+  "apiVersion": "2.0.0",
   "pluginVersion": "2.0.0",
   "pluginType": "application",
+  "license": "EPL-2.0",
+  "author": "Zowe",
+  "homepage": "https://github.com/zowe/sample-react-app",
   "webContent": {
     "framework": "react",
     "launchDefinition": {
@@ -12,7 +15,6 @@
     },
     "descriptionKey": "SampleReactPluginDescription",
     "descriptionDefault": "Sample App Showcasing React Adapter",
-    "isSingleWindowApp": true,
     "defaultWindowStyle": {
       "width": 900,
       "height": 420

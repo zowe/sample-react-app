@@ -1,6 +1,6 @@
 {
   "name": "org.zowe.zlux.sample.react",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A sample react showcasing react framework in Zowe App Framework",
   "license": "EPL-2.0",
   "dependencies": {

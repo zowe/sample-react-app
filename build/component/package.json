@@ -1,6 +1,6 @@
 {
     "name": "react-sample",
-    "version": "2.7.0",
+    "version": "2.8.0",
     "description": "Sample app Showcasing React Adapter",
     "main": "react-sample.pax",
     "homepgae": "https://zowe.org",

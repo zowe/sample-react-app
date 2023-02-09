@@ -1,6 +1,10 @@
 {
     "name": "react-sample",
+<<<<<<< HEAD
     "version": "2.7.0",
+=======
+    "version": "2.14.0",
+>>>>>>> 81b40755c39768861da77a1a59fe0e6fef5249f8
     "description": "Sample app Showcasing React Adapter",
     "main": "react-sample.pax",
     "homepgae": "https://zowe.org",
@@ -16,7 +20,7 @@
         "type": "git",
         "url": "https://github.com/zowe/sample-react-app.git"
     },
-	"dependencies": {
-		"angular-sample": "^2.0.0"
-	}
+    "dependencies": {
+        "angular-sample": "^2.0.0"
+    }
 }

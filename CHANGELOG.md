@@ -1,6 +1,6 @@
 # Sample react app Changelog
 
-All notable changes to the sample react app will be documented in this file.
+All notable changes to the sample react app will be documented in this file. 
 
 ## 2.0.1
 

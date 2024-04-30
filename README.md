@@ -553,7 +553,7 @@ At this point, your sample-react-app folder contains files for an App that could
 You can now start up the server:
 1. `cd /zlux-app-server/bin`
 1. `./nodeCluster.sh` ... if you're testing this in an environment where the ZSS server is not on the same system as the Zowe App Server, you'll instead need to do `./nodeCluster.sh -h \<zss host\> -P \<zss port\>`
-1. Open your browser to `https://hostname:port`, where the hsotname and port are for the Zowe App Server.
+1. Open your browser to `https://hostname:port`, where the hostname and port are for the Zowe App Server.
 1. Login with your credentials
 1. Open the App folder in the left corner of the toolbar, and open the React Sample App.
 

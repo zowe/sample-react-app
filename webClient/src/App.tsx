@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App(props: any) {
+
+  const [logger, setLogger] = useState(props.resources.logger || undefined);
+
+  useEffect(() => {
+    let metadata = props.resources.launchMetadata;
+    if (metadata != null && metadata.data != null && metadata.data.type != null) {
+      // this.handleLaunchOrMessageObject(metadata.data);
+      console.log("Received launch metadata:", metadata);
+    } else {
+      // this.state = this.getDefaultState();
+    }
+    if(logger){
+      logger.info('yuuuuh');
+    }
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">

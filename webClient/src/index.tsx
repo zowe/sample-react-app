@@ -5,13 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { ReactMVDResources } from 'pluginlib/react-inject-resources';
+import { BrowserRouter } from 'react-router-dom';
 import { MVDResources } from './mvd-resources';
-
 
 export function renderPlugin(domElement: HTMLElement, resources: ReactMVDResources): void {
   ReactDOM.render(
     <MVDResources.Provider value={resources}>
-      <App resources={resources}/>
+      <BrowserRouter>
+        <App resources={resources}/>
+      </BrowserRouter>
     </MVDResources.Provider>,
     domElement
   );

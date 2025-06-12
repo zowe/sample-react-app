@@ -8,6 +8,10 @@
       "esnext"
     ],
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "pluginlib": ["../../zlux-app-manager/virtual-desktop/src/pluginlib"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

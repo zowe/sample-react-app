@@ -33,8 +33,9 @@ var config = {
       'pluginlib': path.resolve(desktopDir, 'src/pluginlib'),
       'zlux-base': path.resolve(__dirname, '../../zlux-platform/base/src'),
       'zlux-interface': path.resolve(__dirname, '../../zlux-platform/interface/src'),
-      '~': path.resolve(__dirname, './node_modules/')
-    }
+      '~': path.resolve(__dirname, './node_modules/'),
+      '@': path.resolve(__dirname),
+    },
   },
   'plugins': [
     new CopyWebpackPlugin([

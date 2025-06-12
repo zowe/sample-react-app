@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button } from "@/components/ui/button"
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
 function DemoPage(){
@@ -11,7 +12,8 @@ function DemoPage(){
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          <Button variant="outline">shadcn button!</Button>
+          <h1 className="text-3xl font-bold underline">      Hello world!    </h1>
         </p>
         <a
           className="App-link"
@@ -48,7 +50,7 @@ function App(props: any) {
         <Route path="/" index element={<DemoPage />} />
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={<Navigate to="/" />}
         />
       </Routes>
     </>

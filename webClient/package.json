@@ -14,8 +14,8 @@
     "react-scripts": "4.0.3"
   },
   "scripts": {
-    "start": "webpack --progress --colors --watch",
-    "build": "webpack --progress --colors",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider webpack --progress --colors --watch",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --progress --colors",
     "eject": "react-scripts eject",
 	"test": "exit 0"
   },

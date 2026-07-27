@@ -2,6 +2,10 @@
 
 All notable changes to the sample react app will be documented in this file.
 
+## 3.6.0
+
+- Bugfix: Change app2app example to tn3270 with a TLS connection to foster responsible use ([#119](https://github.com/zowe/sample-react-app/pull/119)
+
 ## 2.0.1
 
 - Bugfix: Schema file was not included, preventing installation as a component

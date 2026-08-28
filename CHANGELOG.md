@@ -4,7 +4,7 @@ All notable changes to the sample react app will be documented in this file.
 
 ## 2.18.6
 
-- Bugfix: Change app2app example to tn3270 with a TLS connection to foster responsible use ([#118](https://github.com/zowe/sample-react-app/pull/118)
+- Bugfix: Change app2app example to tn3270 with a TLS connection to foster responsible use ([#118](https://github.com/zowe/sample-react-app/pull/118))
 
 ## 2.0.1
 

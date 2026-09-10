@@ -17,6 +17,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 if (process.env.MVD_DESKTOP_DIR == null) {
   throw new Error('You must specify MVD_DESKTOP_DIR in your environment');
 }
+var desktopDir = process.env.MVD_DESKTOP_DIR;
 
 var config = {
   'entry': [
@@ -25,6 +26,16 @@ var config = {
   'output': {
     'path': path.resolve(__dirname, '../web'),
     'filename': 'main.js',
+  },
+  'resolve': {
+    'extensions': ['.js', '.ts', '.jsx', '.tsx'],
+    'alias': {
+      'pluginlib': path.resolve(desktopDir, 'src/pluginlib'),
+      'zlux-base': path.resolve(__dirname, '../../zlux-platform/base/src'),
+      'zlux-interface': path.resolve(__dirname, '../../zlux-platform/interface/src'),
+      '~': path.resolve(__dirname, './node_modules/'),
+      '@': path.resolve(__dirname),
+    },
   },
   'plugins': [
     new CopyWebpackPlugin([

@@ -20,15 +20,6 @@
       "height": 420
     }
   },
-  "dataServices": [
-    {
-      "type": "import",
-      "sourceName": "hello",
-      "localName": "hello",
-      "sourcePlugin": "org.zowe.zlux.sample.angular",
-      "versionRange": "^1.0.0"
-    }
-  ],
   "configurationData": {
     "resources": {
       "requests": {

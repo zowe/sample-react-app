@@ -218,7 +218,7 @@ const resources = {
 
 i18next.use(initReactI18next).use(LanguageDetector).init({
   resources,
-  interpolation: { escapeValue: false },
+  interpolation: { escapeValue: true },
   lng: window.ZoweZLUX.globalization.getLanguage(),
   fallbackLng: 'en',
   defaultNS: 'translation',
